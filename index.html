@@ -6,60 +6,212 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="Get Clawbot installed and running in 10 minutes. Free 1-on-1 setup. Just grab a $9 VPS and I handle the rest.">
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Outfit:wght@400;500;600;700&display=swap');
+    
+    :root {
+      --bg-deep: #020617;
+      --bg-card: #0f172a;
+      --accent-cyan: #22d3ee;
+      --accent-lime: #a3e635;
+      --accent-amber: #fbbf24;
+      --text-primary: #f1f5f9;
+      --text-muted: #94a3b8;
+      --border: #1e293b;
+    }
+    
+    * {
+      box-sizing: border-box;
+    }
+    
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial;
-      background: #020617;
-      color: #e5e7eb;
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial;
+      background: var(--bg-deep);
+      color: var(--text-primary);
       margin: 0;
       padding: 0;
+      min-height: 100vh;
+      background-image: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(34, 211, 238, 0.15), transparent),
+        radial-gradient(ellipse 60% 40% at 100% 100%, rgba(163, 230, 53, 0.1), transparent);
     }
+    
     .container {
       max-width: 760px;
       margin: auto;
       padding: 48px 20px;
     }
+    
     h1 {
-      font-size: 38px;
-      line-height: 1.25;
-      color: #38bdf8;
+      font-family: 'Space Mono', monospace;
+      font-size: 36px;
+      line-height: 1.3;
+      color: var(--accent-cyan);
+      text-shadow: 0 0 40px rgba(34, 211, 238, 0.3);
     }
+    
     h2 {
+      font-family: 'Space Mono', monospace;
       margin-top: 36px;
-      color: #facc15;
+      color: var(--accent-amber);
+      font-size: 22px;
     }
+    
     p {
       font-size: 18px;
       line-height: 1.7;
+      color: var(--text-muted);
     }
+    
     ul {
       font-size: 17px;
-      line-height: 1.7;
+      line-height: 1.8;
+      color: var(--text-muted);
     }
+    
+    li {
+      margin: 8px 0;
+    }
+    
     .box {
-      background: #020617;
-      padding: 24px;
-      border-radius: 14px;
-      margin: 28px 0;
-      border: 1px solid #1e293b;
+      background: var(--bg-card);
+      padding: 32px;
+      border-radius: 16px;
+      margin: 32px 0;
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
     }
+    
+    .box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-lime));
+    }
+    
     .btn {
       display: inline-block;
-      background: #22c55e;
-      color: #022c22;
-      padding: 14px 28px;
-      border-radius: 10px;
-      font-size: 20px;
+      background: linear-gradient(135deg, var(--accent-lime), #65a30d);
+      color: #1a2e05;
+      padding: 16px 32px;
+      border-radius: 12px;
+      font-size: 18px;
       text-decoration: none;
       font-weight: 700;
       margin-top: 16px;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(163, 230, 53, 0.3);
     }
+    
     .btn:hover {
-      background: #16a34a;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 30px rgba(163, 230, 53, 0.4);
     }
+    
+    /* Form Styles */
+    .form-section {
+      background: linear-gradient(135deg, var(--bg-card), #1e293b);
+      padding: 40px;
+      border-radius: 20px;
+      margin: 48px 0;
+      border: 1px solid var(--border);
+      position: relative;
+    }
+    
+    .form-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      padding: 2px;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-lime));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+    
+    .form-title {
+      font-family: 'Space Mono', monospace;
+      font-size: 24px;
+      color: var(--text-primary);
+      margin: 0 0 8px 0;
+    }
+    
+    .form-subtitle {
+      color: var(--text-muted);
+      margin: 0 0 28px 0;
+      font-size: 16px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .form-group input {
+      width: 100%;
+      padding: 14px 16px;
+      font-size: 16px;
+      background: var(--bg-deep);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text-primary);
+      font-family: inherit;
+      transition: all 0.2s ease;
+    }
+    
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.1);
+    }
+    
+    .form-group input::placeholder {
+      color: #475569;
+    }
+    
+    .form-note {
+      font-size: 13px;
+      color: #64748b;
+      margin-top: 6px;
+    }
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    
+    @media (max-width: 600px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      h1 {
+        font-size: 28px;
+      }
+    }
+    
     footer {
-      opacity: 0.6;
+      opacity: 0.5;
       font-size: 14px;
       margin-top: 60px;
+      text-align: center;
     }
   </style>
 </head>
@@ -99,6 +251,41 @@
       <li>Founders and builders who hate server setup</li>
       <li>Non-technical users</li>
     </ul>
+
+    <!-- Contact Form -->
+    <div class="form-section" id="contact">
+      <h3 class="form-title">📬 留下联系方式</h3>
+      <p class="form-subtitle">购买 VPS 后填写此表单，我会尽快联系你安排安装</p>
+      
+      <form action="thank-you.html" method="GET">
+        <div class="form-group">
+          <label for="email">邮箱地址 *</label>
+          <input type="email" id="email" name="email" placeholder="your@email.com" required>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="telegram">Telegram</label>
+            <input type="text" id="telegram" name="telegram" placeholder="@username">
+            <p class="form-note">推荐，响应最快</p>
+          </div>
+          
+          <div class="form-group">
+            <label for="discord">Discord</label>
+            <input type="text" id="discord" name="discord" placeholder="username#1234">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="vps_info">VPS 信息（可选）</label>
+          <input type="text" id="vps_info" name="vps_info" placeholder="IP 地址 或 购买订单号">
+        </div>
+        
+        <button type="submit" class="btn" style="width: 100%; text-align: center;">
+          ✅ 提交并预约安装
+        </button>
+      </form>
+    </div>
 
     <footer>
       Independent technical service. Not affiliated with Clawbot.
