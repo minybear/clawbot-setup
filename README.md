@@ -1,1 +1,1 @@
-# clawbot-setup
+# moltbot-setup
